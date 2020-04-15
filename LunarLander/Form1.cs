@@ -47,10 +47,10 @@ namespace LunarLander
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //Create graphics object
+            //Create graphics object connected to the form using this.CreateGraphics
             Graphics canvas = this.CreateGraphics();
 
-            //Solid brushes
+            //Create 3 Solid brushes
             SolidBrush greenYellow = new SolidBrush(Color.GreenYellow); //Landing pad
             SolidBrush orange = new SolidBrush(Color.Orange); //Lots of fuel remaining indicator
             SolidBrush red = new SolidBrush(Color.Red); //Low fuel indicator
@@ -60,6 +60,25 @@ namespace LunarLander
 
             //Apply gravity to the Lander
             int velocity = +1;
+
+            //Change the Y position of the Lander by adding velocity to it 
+
+            //Draw landing pad
+
+            //If the width of the fuel gauge is less than 20 then draw it in red otherwise draw it in orange.
+
+            //If the lander sprite is completely in between the left and right edges of the landing pad and the
+            //bottom edge of the sprite is greater than or equal to the top edge of the pad then stop the timer
+            //display a landed message
+
+            //set the visible property of the button to true
+            //Otherwise if the bottom edge of the lander is greater than the height of the form then stop the timer
+            //display a crashed message
+            //set the visible property of the button to true
+
+
+
+
         }
     }
 }
