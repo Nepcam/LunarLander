@@ -35,9 +35,6 @@ namespace LunarLander
             //Position of the lander
             Point landerPosition = new Point(this.Width/2, this.Height = velocity);
 
-            //Draw Lander using DrawImage method
-            
-
             //Start timer
             timer1.Start();
 
@@ -59,9 +56,15 @@ namespace LunarLander
             canvas.Clear(Color.Black);
 
             //Apply gravity to the Lander
-            int velocity = +1;
-
+            this.velocity = +1;
+            
             //Change the Y position of the Lander by adding velocity to it 
+            Point landerPosition = new Point(Width / 2, velocity);
+
+            //Draw Lander using DrawImage method
+            Image landerImage = Image.FromFile("lander.jpg");
+            Rectangle imageholder = new Rectangle(Width/2, velocity);
+
 
             //Draw landing pad
 
