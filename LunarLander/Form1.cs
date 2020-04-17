@@ -12,8 +12,6 @@ namespace LunarLander
 {
     public partial class Form1 : Form
     {
-        const int FUEL_AMOUNT = 100; 
-
         public Form1()
         {
             InitializeComponent();
@@ -21,67 +19,70 @@ namespace LunarLander
 
         //Random number generator
         Random rand = new Random();
-        //The velocity of the lander
-        int velocity = 0;
+        //The velocity of the LANDER
+        int velocity;
         //A rectangle object tp represent the landing pad
-        Rectangle pad = new Rectangle(0, -60, -50, 60);
+        Rectangle pad;
         //A rectangle object to represent the fuel gauge
-        Rectangle fuel = new Rectangle(0, 0, FUEL_AMOUNT, 10);
+        Rectangle fuel;
         //A point object to represent the top left hand corner of the ship sprite
         Point pos;
+        //Fuel amount for the LANDER
+        const int fuelAmount = 100;
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            //Position of the lander
-            Point landerPosition = new Point(this.Width/2, this.Height = velocity);
-
-            //Start timer
+            //Create new Point to position the LANDER
+            Point landerPosition = new Point(this.Width, 0);
+            //Set velocity of the LANNDER to 0;
+            int velocity = 0;
+            //Create new Rectangle object for the LANDING_PAD - use the Rectangle variable already declared at class scope and just make a new object for it
+            Rectangle pad = new Rectangle(0, -60, -50, 60);
+            //Create a new Rectangle object for the fuel gauge - use the Rectangle variable already declared for you
+            Rectangle fuel = new Rectangle(0, 0, fuelAmount, 10);
+            //Start timer using the Start() method
             timer1.Start();
-
-            //Form focus
+            //Give the form the focus - using this.Focus() ... this object refers to the current form 
             this.Focus();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //Create graphics object connected to the form using this.CreateGraphics
+            //Create a Graphics object connect to the form - using this.CreateGraphics
             Graphics canvas = this.CreateGraphics();
-
-            //Create 3 Solid brushes
-            SolidBrush greenYellow = new SolidBrush(Color.GreenYellow); //Landing pad
-            SolidBrush orange = new SolidBrush(Color.Orange); //Lots of fuel remaining indicator
-            SolidBrush red = new SolidBrush(Color.Red); //Low fuel indicator
-
-            //Clear the picturebox with the color black
+            //Create three solid brushes
+            //GreenYellow == landing pad
+            SolidBrush greenYellow = new SolidBrush(Color.GreenYellow);
+            //Orange == indicates lots of fuel remaining
+            SolidBrush orange = new SolidBrush(Color.Orange);
+            //Red == low fuel
+            SolidBrush red = new SolidBrush(Color.Red);
+            //Clear pictureBox with color black - using the Clear() of the graphics object
             canvas.Clear(Color.Black);
-
-            //Apply gravity to the Lander
+            //Apply gravity to the LANDER
             this.velocity = +1;
-            
-            //Change the Y position of the Lander by adding velocity to it 
+            Console.WriteLine(velocity);
+            //Change the Y position of the LANDER by adding the velocity to it
             Point landerPosition = new Point(Width / 2, velocity);
+            //Draw LANDER - using the DrawImage() of the graphics object at its current X and Y position
+            
+            //Draw landing pad as well + Test and Run 
+            Pen padPen = new Pen(Color.GreenYellow, 5);
+            canvas.DrawLine(padPen, 0, -60, -50, 60);
 
-            //Draw Lander using DrawImage method
-            Image landerImage = Image.FromFile("lander.jpg");
-            Rectangle imageholder = new Rectangle(Width/2, velocity);
+            // IF (width of the fuel gauge < 20)
+                //Draw FUEL_GAUGE in RED
+            // ELSE
+                //Draw FUEL_GAUGE in Orange
 
-
-            //Draw landing pad
-
-            //If the width of the fuel gauge is less than 20 then draw it in red otherwise draw it in orange.
-
-            //If the lander sprite is completely in between the left and right edges of the landing pad and the
-            //bottom edge of the sprite is greater than or equal to the top edge of the pad then stop the timer
-            //display a landed message
-
-            //set the visible property of the button to true
-            //Otherwise if the bottom edge of the lander is greater than the height of the form then stop the timer
-            //display a crashed message
-            //set the visible property of the button to true
-
-
-
-
+            // IF (LANDER < LANDER_PAD && LANDER > top edge of LANDER_PAD)
+                // Stop the timer
+                // Display landed message
+                // Set the visible property of the button to true
+            // ELSE IF (bottom edge of LANDER > height of the form) 
+                // stop the timer
+                // Display crash message
+                // Set visible property of the button to true 
         }
     }
 }
